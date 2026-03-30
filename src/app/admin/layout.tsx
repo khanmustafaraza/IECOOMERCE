@@ -1,11 +1,19 @@
-import React from 'react'
+import Sidebar from "@/components/sidebar/Sidebar";
+import Topbar from "@/components/topbar/Topbar";
+import React from "react";
 
-const AdminLayout = ({children}:{children:React.ReactNode}) => {
+const AdminLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div>AdminLayout
-      {children}
-    </div>
-  )
-}
+    <div className="flex">
+      <Sidebar />
 
-export default AdminLayout
+      <div className="rightbar">
+        <Topbar />
+        <div className="p-2">{children}</div>
+      </div>
+    </div>
+  );
+};
+
+export default AdminLayout;
+import { FiTrendingUp, FiPackage, FiUsers, FiDollarSign } from "react-icons/fi";

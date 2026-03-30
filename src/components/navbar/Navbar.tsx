@@ -1,54 +1,63 @@
 import Link from "next/link";
+import { FiShoppingBag, FiUser, FiMenu } from "react-icons/fi";
 
 export default function Navbar() {
-  const user = {
-    name: "good",
-  };
+  // const user = {
+  //   name: "good",
+  // };
 
   return (
-    <nav className="w-full flex justify-between items-center py-4 px-6 border-b border-gray-200 bg-white shadow-sm">
-      {/* Left - Logo and Main Links */}
-      <div className="flex items-center space-x-6">
-        <Link href="/" className="font-semibold text-lg text-gray-800 hover:text-gray-600">
-          E-Commerce
-        </Link>
-        <Link href="/shop" className="text-gray-700 hover:text-gray-500 transition-colors duration-200">
-          Shop
-        </Link>
-        <Link href="/about" className="text-gray-700 hover:text-gray-500 transition-colors duration-200">
-          About
-        </Link>
-      </div>
+    <header className="w-full border-b border-gray-200/70">
+      <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-5">
+        {/* Left - Logo + Links */}
+        <div className="flex items-center gap-10">
+          <Link
+            href="/"
+            className="text-2xl font-bold tracking-tight text-gray-900 hover:opacity-80 transition-all duration-300"
+          >
+            E-Commerce
+          </Link>
 
-      {/* Right - User Links */}
-      <div className="flex items-center space-x-4">
-        {user ? (
-          <>
+          <div className="hidden md:flex items-center gap-8">
             <Link
-              href="/dashboard"
-              className="text-gray-700 hover:text-gray-500 transition-colors duration-200"
+              href="/shop"
+              className="relative text-[15px] font-medium text-gray-700 hover:text-black transition-all duration-300 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full"
             >
-              Dashboard
+              Shop
             </Link>
-            {/* Future logout button can go here */}
-          </>
-        ) : (
-          <>
+
             <Link
-              href="/auth/login"
-              className="text-gray-700 hover:text-gray-500 transition-colors duration-200"
+              href="/about"
+              className="relative text-[15px] font-medium text-gray-700 hover:text-black transition-all duration-300 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full"
             >
-              Login
+              About
             </Link>
-            <Link
-              href="/auth/register"
-              className="text-gray-700 hover:text-gray-500 transition-colors duration-200"
-            >
-              Register
-            </Link>
-          </>
-        )}
-      </div>
-    </nav>
+          </div>
+        </div>
+
+        {/* Right - User Links */}
+        <div className="flex items-center gap-5">
+          <Link
+            href="/cart"
+            className="hidden sm:flex items-center gap-2 text-gray-700 hover:text-black transition-all duration-300"
+          >
+            <FiShoppingBag size={20} />
+            <span className="text-sm font-medium">Cart</span>
+          </Link>
+
+          <Link
+            href="/login"
+            className="flex items-center gap-2 border border-gray-300 px-4 py-2 rounded-full text-sm font-medium text-gray-800 hover:border-black hover:text-black transition-all duration-300"
+          >
+            <FiUser size={18} />
+            Login
+          </Link>
+
+          <button className="md:hidden text-gray-800 hover:text-black transition-all duration-300">
+            <FiMenu size={24} />
+          </button>
+        </div>
+      </nav>
+    </header>
   );
 }
