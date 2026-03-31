@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Open_Sans, Roboto, Lato } from "next/font/google";
 import "./globals.css";
+import AuthProvider from "@/store/AuthContext";
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
@@ -28,7 +29,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${lato.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <AuthProvider>
+        <body className="min-h-full flex flex-col">{children}</body>
+      </AuthProvider>
     </html>
   );
 }

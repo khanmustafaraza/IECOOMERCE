@@ -5,9 +5,12 @@ import AuthReducer from "@/reducers/AuthReducer";
 import { AuthContextType, AuthState } from "@/types/authtype";
 
 const initialState: AuthState = {
-  name: "",
-  email: "",
-  password: "",
+  registerObj:{
+    name :"",
+    email:"",
+    password:""
+
+  },
   isLoading: false,
   isError: false,
   message: "",
@@ -19,6 +22,8 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(AuthReducer, initialState);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // console.log(e.target.name)
+    // console.log(e.target.value)
     dispatch({
       type: "HANDLE_CHANGE",
       payload: {
@@ -28,7 +33,9 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     });
   };
 
-  const registerUser = async () => {
+  const handleSubmit = async (e:React.SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(state.registerObj)
     try {
       dispatch({ type: "SET_LOADING" });
 
@@ -48,7 +55,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ state, handleChange, registerUser }}>
+    <AuthContext.Provider value={{ state, handleChange, handleSubmit }}>
       {children}
     </AuthContext.Provider>
   );

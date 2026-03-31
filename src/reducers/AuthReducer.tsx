@@ -13,7 +13,10 @@ const AuthReducer = (state: AuthState, action: AuthAction): AuthState => {
     case "HANDLE_CHANGE":
       return {
         ...state,
-        [action.payload.name]: action.payload.value,
+        registerObj: {
+          ...state.registerObj,
+          [action.payload.name]: action.payload.value,
+        },
       };
 
     case "REGISTER_SUCCESS":
@@ -35,9 +38,11 @@ const AuthReducer = (state: AuthState, action: AuthAction): AuthState => {
     case "RESET_FORM":
       return {
         ...state,
-        name: "",
-        email: "",
-        password: "",
+        registerObj: {
+          name: "",
+          email: "",
+          password: "",
+        },
         isLoading: false,
         isError: false,
         message: "",

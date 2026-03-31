@@ -1,13 +1,9 @@
-export type RegisterObj = {
-  name: string;
-  email: string;
-  password: string;
-};
-
 export type AuthState = {
-  name: string;
-  email: string;
-  password: string;
+  registerObj: {
+    name: string;
+    email: string;
+    password: string;
+  };
   isLoading: boolean;
   isError: boolean;
   message: string;
@@ -23,6 +19,6 @@ export type AuthAction =
 export type AuthContextType = {
   state: AuthState;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  registerUser: () => Promise<void>;
+  handleSubmit: (e: React.SubmitEvent<HTMLFormElement>) => Promise<void>;
   //   dispatch: React.Dispatch<AuthAction>;
 };

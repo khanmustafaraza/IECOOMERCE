@@ -1,9 +1,11 @@
 "use client";
 
+import useAuth from "@/hooks/authhook";
 import Link from "next/link";
 import { FiUser, FiMail, FiLock, FiArrowRight } from "react-icons/fi";
 
 const Register = () => {
+  const { state, handleChange, handleSubmit } = useAuth();
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-10">
       <div className="w-full max-w-md border border-gray-200 rounded-3xl p-8 shadow-sm">
@@ -16,7 +18,12 @@ const Register = () => {
         </div>
 
         {/* Form */}
-        <form className="space-y-5">
+        <form
+          className="space-y-5"
+          onSubmit={(e: React.SubmitEvent<HTMLFormElement>) => {
+            handleSubmit(e);
+          }}
+        >
           {/* Name */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -25,6 +32,11 @@ const Register = () => {
             <div className="flex items-center border border-gray-300 rounded-2xl px-4 py-3 focus-within:border-black transition-all duration-300">
               <FiUser className="text-gray-400 mr-3" size={18} />
               <input
+                name="name"
+                value={state.registerObj.name}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  handleChange(e)
+                }
                 type="text"
                 placeholder="Enter your full name"
                 className="w-full outline-none bg-transparent text-sm text-gray-800"
@@ -40,6 +52,12 @@ const Register = () => {
             <div className="flex items-center border border-gray-300 rounded-2xl px-4 py-3 focus-within:border-black transition-all duration-300">
               <FiMail className="text-gray-400 mr-3" size={18} />
               <input
+               name="email"
+                value={state.registerObj.email}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  handleChange(e)
+                }
+
                 type="email"
                 placeholder="Enter your email"
                 className="w-full outline-none bg-transparent text-sm text-gray-800"
@@ -55,6 +73,11 @@ const Register = () => {
             <div className="flex items-center border border-gray-300 rounded-2xl px-4 py-3 focus-within:border-black transition-all duration-300">
               <FiLock className="text-gray-400 mr-3" size={18} />
               <input
+               name="password"
+                value={state.registerObj.password}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  handleChange(e)
+                }
                 type="password"
                 placeholder="Create a password"
                 className="w-full outline-none bg-transparent text-sm text-gray-800"

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { FiShoppingBag, FiUser, FiMenu } from "react-icons/fi";
+import Loader from "../loader/Loader";
 
 export default function Navbar() {
   // const user = {
@@ -8,6 +9,7 @@ export default function Navbar() {
 
   return (
     <header className="w-full border-b border-gray-200/70">
+      {/* <Loader/> */}
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-5">
         {/* Left - Logo + Links */}
         <div className="flex items-center gap-10">
