@@ -21,3 +21,47 @@ export async function POST(req: Request) {
 
   return res;
 }
+
+("use server");
+
+import bcrypt from "bcryptjs";
+import connectDB from "@/lib/db";
+import User from "@/lib/models/User";
+import { createDatabaseSession, deleteDatabaseSession } from "@/lib/session-db";
+import { redirect } from "next/navigation";
+
+export async function loginUser(formData: FormData) {
+  await connectDB();
+
+  const email = formData.get("email") as string;
+  const password = formData.get("password") as string;
+
+  if (!email || !password) {
+    return { success: false, message: "Email and password are required" };
+  }
+
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return { success: false, message: "Invalid credentials" };
+  }
+
+  const isPasswordCorrect = await bcrypt.compare(password, user.password);
+
+  if (!isPasswordCorrect) {
+    return { success: false, message: "Invalid credentials" };
+  }
+
+  await createDatabaseSession(user._id.toString());
+
+  if (user.role === "admin") {
+    redirect("/admin");
+  }
+
+  redirect("/dashboard");
+}
+
+export async function logoutUser() {
+  await deleteDatabaseSession();
+  redirect("/login");
+}

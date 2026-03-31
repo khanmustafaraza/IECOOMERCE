@@ -1263,3 +1263,42 @@ If you want that, say:
 “Build my full AI Teacher SaaS architecture”
 
 And I’ll design it like a real production startup for you.
+
+// session-token.ts
+
+
+// import { SignJWT, jwtVerify } from "jose";
+
+// const encodedKey = new TextEncoder().encode(secretKey);
+
+
+
+// export async function encrypt(payload: SessionPayload) {
+//   return new SignJWT({
+//     userId: payload.userId,
+//     role: payload.role,
+//     name: payload.name,
+//     expiresAt: payload.expiresAt.toISOString(),
+//   })
+//     .setProtectedHeader({ alg: "HS256" })
+//     .setIssuedAt()
+//     .setExpirationTime("7d")
+//     .sign(encodedKey);
+// }
+
+// export async function decrypt(session: string | undefined = "") {
+//   try {
+//     const { payload } = await jwtVerify(session, encodedKey, {
+//       algorithms: ["HS256"],
+//     });
+
+//     return payload as {
+//       userId: string;
+//       role: "user" | "admin";
+//       name: string;
+//       expiresAt: string;
+//     };
+//   } catch (error) {
+//     return null;
+//   }
+// }
