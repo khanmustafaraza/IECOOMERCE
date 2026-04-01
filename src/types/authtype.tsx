@@ -4,6 +4,10 @@ export type AuthState = {
     email: string;
     password: string;
   };
+  loginObj: {
+    email: "";
+    password: "";
+  };
   isLoading: boolean;
   isError: boolean;
   message: string;
@@ -11,14 +15,20 @@ export type AuthState = {
 
 export type AuthAction =
   | { type: "SET_LOADING" }
-  | { type: "HANDLE_CHANGE"; payload: { name: string; value: string } }
+  | { type: "LOGIN_SUCCESS"; payload: string }
+  | { type: "HANDLE_LOGIN_CHANGE"; payload: { name: string; value: string } }
+  | { type: "HANDLE_REGISTER_CHANGE"; payload: { name: string; value: string } }
   | { type: "REGISTER_SUCCESS"; payload: string }
   | { type: "REGISTER_ERROR"; payload: string }
   | { type: "RESET_FORM" };
 
 export type AuthContextType = {
   state: AuthState;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSubmit: (e: React.SubmitEvent<HTMLFormElement>) => Promise<void>;
+  handleRegisterChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleLoginChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleLoginSubmit: (e: React.SubmitEvent<HTMLFormElement>) => Promise<void>;
+  handleRegisterSubmit: (
+    e: React.SubmitEvent<HTMLFormElement>,
+  ) => Promise<void>;
   //   dispatch: React.Dispatch<AuthAction>;
 };

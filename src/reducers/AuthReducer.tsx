@@ -10,7 +10,7 @@ const AuthReducer = (state: AuthState, action: AuthAction): AuthState => {
         message: "",
       };
 
-    case "HANDLE_CHANGE":
+    case "HANDLE_REGISTER_CHANGE":
       return {
         ...state,
         registerObj: {
@@ -18,8 +18,23 @@ const AuthReducer = (state: AuthState, action: AuthAction): AuthState => {
           [action.payload.name]: action.payload.value,
         },
       };
+    case "HANDLE_LOGIN_CHANGE":
+      return {
+        ...state,
+        loginObj: {
+          ...state.loginObj,
+          [action.payload.name]: action.payload.value,
+        },
+      };
 
     case "REGISTER_SUCCESS":
+      return {
+        ...state,
+        isLoading: false,
+        isError: false,
+        message: action.payload,
+      };
+    case "LOGIN_SUCCESS":
       return {
         ...state,
         isLoading: false,

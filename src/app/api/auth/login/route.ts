@@ -1,67 +1,78 @@
-import { NextResponse } from "next/server";
-import bcrypt from "bcryptjs";
-import User from "@/models/User";
-import { signToken } from "@/lib/auth";
 import { connectDB } from "@/lib/db";
+import { comparePassword } from "@/lib/password";
+import User from "@/models/User";
+import { NextResponse } from "next/server";
+import { generateToken } from "@/lib/session-token-auth";
 
 export async function POST(req: Request) {
-  await connectDB();
-  const { email, password } = await req.json();
+  try {
+    await connectDB();
 
-  const user = await User.findOne({ email });
-  if (!user) return NextResponse.json({ error: "User not found" });
+    const { email, password } = await req.json();
 
-  const isMatch = await bcrypt.compare(password, user.password);
-  if (!isMatch) return NextResponse.json({ error: "Invalid credentials" });
+    if (!email || !password) {
+      return NextResponse.json(
+        { success: false, error: "Email and password are required" },
+        { status: 400 },
+      );
+    }
 
-  const token = signToken({ id: user._id, role: user.role });
+    const user = await User.findOne({ email });
 
-  const res = NextResponse.json({ message: "Login success" });
-  res.cookies.set("token", token, { httpOnly: true });
+    if (!user) {
+      return NextResponse.json(
+        { success: false, error: "User not found" },
+        { status: 404 },
+      );
+    }
 
-  return res;
-}
+    const isMatch = await comparePassword(password, user.password);
 
-("use server");
+    if (!isMatch) {
+      return NextResponse.json(
+        { success: false, error: "Invalid credentials" },
+        { status: 401 },
+      );
+    }
 
-import bcrypt from "bcryptjs";
-import connectDB from "@/lib/db";
-import User from "@/lib/models/User";
-import { createDatabaseSession, deleteDatabaseSession } from "@/lib/session-db";
-import { redirect } from "next/navigation";
+    const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
 
-export async function loginUser(formData: FormData) {
-  await connectDB();
+    const token = generateToken({
+      userId: user._id.toString(),
+      role: user.role,
+      name: user.name,
+      expiresAt: expiresAt.toISOString(),
+    });
 
-  const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
+    const res = NextResponse.json(
+      {
+        success: true,
+        message: "Login success",
+        user: {
+          id: user._id,
+          name: user.name,
+          role: user.role,
+        },
+      },
+      { status: 200 },
+    );
 
-  if (!email || !password) {
-    return { success: false, message: "Email and password are required" };
+    res.cookies.set("session", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      expires: expiresAt,
+      sameSite: "lax",
+      path: "/",
+    });
+
+    return res;
+    console.log(res);
+  } catch (error) {
+    console.log("LOGIN ERROR:", error);
+
+    return NextResponse.json(
+      { success: false, error: "Something went wrong" },
+      { status: 500 },
+    );
   }
-
-  const user = await User.findOne({ email });
-
-  if (!user) {
-    return { success: false, message: "Invalid credentials" };
-  }
-
-  const isPasswordCorrect = await bcrypt.compare(password, user.password);
-
-  if (!isPasswordCorrect) {
-    return { success: false, message: "Invalid credentials" };
-  }
-
-  await createDatabaseSession(user._id.toString());
-
-  if (user.role === "admin") {
-    redirect("/admin");
-  }
-
-  redirect("/dashboard");
-}
-
-export async function logoutUser() {
-  await deleteDatabaseSession();
-  redirect("/login");
 }

@@ -1,10 +1,21 @@
 import mongoose from "mongoose";
 
+const MONGO_URI = process.env.MONGO!;
+
+if (!MONGO_URI) {
+  throw new Error("Please define MONGO_URI in .env.local");
+}
+
 export const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI!);
-    console.log("MongoDB connected");
+    if (mongoose.connection.readyState >= 1) {
+      return;
+    }
+
+    await mongoose.connect(MONGO_URI);
+    console.log("MongoDB connected successfully");
   } catch (error) {
-    throw new Error("DB connection failed");
+    console.log("DB CONNECTION ERROR:", error);
+    throw new Error("Database connection failed");
   }
 };

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { FiUser, FiMail, FiLock, FiArrowRight } from "react-icons/fi";
 
 const Register = () => {
-  const { state, handleChange, handleSubmit } = useAuth();
+  const { state, handleRegisterChange, handleRegisterSubmit } = useAuth();
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-10">
       <div className="w-full md:max-w-[500px] border border-gray-200 rounded p-8 shadow-sm">
@@ -28,17 +28,17 @@ const Register = () => {
         <form
           className="space-y-5"
           onSubmit={(e: React.SubmitEvent<HTMLFormElement>) => {
-            handleSubmit(e);
+            handleRegisterSubmit(e);
           }}
         >
           {/* Row 1: Name + Email */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="flex flex-wrap gap-5 items-center">
             {/* Name */}
-            <div>
+            <div className="flex-1">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Full Name
               </label>
-              <div className="flex items-center border border-gray-300 rounded px-3 py-[4px] focus-within:border-black transition-all duration-300">
+              <div className="flex items-center border border-gray-300 rounded px-3 py-2 focus-within:border-black transition-all duration-300">
                 <div className="bg-gray-100 p-2 rounded-xl mr-2">
                   <FiUser className="text-gray-600" size={16} />
                 </div>
@@ -46,7 +46,7 @@ const Register = () => {
                   name="name"
                   value={state.registerObj.name}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    handleChange(e)
+                    handleRegisterChange(e)
                   }
                   type="text"
                   placeholder="Full name"
@@ -56,11 +56,12 @@ const Register = () => {
             </div>
 
             {/* Email */}
-            <div>
+            {/* {toast("Wow so easy!")} */}
+            <div className="flex-1">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Email Address
               </label>
-              <div className="flex items-center border border-gray-300 rounded px-3 py-[4px] focus-within:border-black transition-all duration-300">
+              <div className="flex items-center border border-gray-300 rounded px-3 py-2 focus-within:border-black transition-all duration-300">
                 <div className="bg-gray-100 p-2 rounded-xl mr-2">
                   <FiMail className="text-gray-600" size={16} />
                 </div>
@@ -68,7 +69,7 @@ const Register = () => {
                   name="email"
                   value={state.registerObj.email}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    handleChange(e)
+                    handleRegisterChange(e)
                   }
                   type="email"
                   placeholder="Email"
@@ -79,13 +80,13 @@ const Register = () => {
           </div>
 
           {/* Row 2: Password + Confirm */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="flex flex-wrap gap-5 items-center">
             {/* Password */}
-            <div>
+            <div className="flex-1">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Password
               </label>
-              <div className="flex items-center border border-gray-300 rounded px-3 py-1 focus-within:border-black transition-all duration-300">
+              <div className="flex items-center border border-gray-300 rounded px-3 py-2 focus-within:border-black transition-all duration-300">
                 <div className="bg-gray-100 p-2 rounded-xl mr-2">
                   <FiLock className="text-gray-600" size={16} />
                 </div>
@@ -93,7 +94,7 @@ const Register = () => {
                   name="password"
                   value={state.registerObj.password}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    handleChange(e)
+                    handleRegisterChange(e)
                   }
                   type="password"
                   placeholder="Password"
@@ -103,11 +104,11 @@ const Register = () => {
             </div>
 
             {/* Confirm Password */}
-            <div>
+            <div className="flex-1">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Confirm Password
               </label>
-              <div className="flex items-center border border-gray-300 rounded px-3 py-[4px] focus-within:border-black transition-all duration-300">
+              <div className="flex items-center border border-gray-300 rounded px-3 py-2 focus-within:border-black transition-all duration-300">
                 <div className="bg-gray-100 p-2 rounded-xl mr-2">
                   <FiLock className="text-gray-600" size={16} />
                 </div>

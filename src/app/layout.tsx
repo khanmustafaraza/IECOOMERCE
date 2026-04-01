@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Open_Sans, Roboto, Lato } from "next/font/google";
+import { ToastContainer } from "react-toastify";
 import "./globals.css";
 import AuthProvider from "@/store/AuthContext";
 
@@ -30,7 +31,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${lato.variable} h-full antialiased`}>
       <AuthProvider>
-        <body className="min-h-full flex flex-col">{children}</body>
+        <body className="min-h-full flex flex-col">
+          <ToastContainer />
+          {children}
+        </body>
       </AuthProvider>
     </html>
   );

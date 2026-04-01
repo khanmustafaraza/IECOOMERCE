@@ -1,9 +1,9 @@
 import "server-only";
 import { redirect } from "next/navigation";
-import { getTokenSession } from "@/lib/session-token";
+import { getSession } from "./session-token-auth";
 
 export async function verifyUserSession() {
-  const session = await getTokenSession();
+  const session = await getSession();
 
   if (!session?.userId) {
     redirect("/login");
@@ -13,14 +13,14 @@ export async function verifyUserSession() {
 }
 
 export async function verifyAdminSession() {
-  const session = await getTokenSession();
+  const session = await getSession();
 
   if (!session?.userId) {
     redirect("/login");
   }
 
   if (session.role !== "admin") {
-    redirect("/dashboard");
+    redirect("/admin");
   }
 
   return session;
