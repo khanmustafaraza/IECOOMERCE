@@ -3,49 +3,7 @@ import React from "react";
 const Dashboard = () => {
   return (
     <div>
-      page Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque
-      corporis in pariatur officiis facilis, quod harum sequi? Iusto, animi
-      maxime! Iste nisi soluta corporis, atque ipsa ipsam hic! Saepe sapiente
-      tempora cum amet hic. Sit vel iste eligendi expedita. Rem eius debitis
-      tenetur? Quo veniam distinctio modi molestiae beatae blanditiis qui
-      obcaecati alias eligendi neque aliquam harum culpa ea, soluta fugit error
-      labore consequatur facere ab. Quis rerum consectetur accusantium hic
-      sequi, est laborum rem totam eos dolor exercitationem ab quae dolore
-      dolores sunt consequuntur earum fugiat dignissimos iste ipsum quos illo
-      incidunt. Earum eum in sit ad, eveniet dolorum quae, quasi quos rerum
-      perspiciatis sequi. Dolorum amet, blanditiis harum optio voluptates fugit
-      labore nihil maxime aspernatur voluptate nobis nam porro, reiciendis
-      repellendus a voluptatum obcaecati non recusandae est, sed deserunt
-      possimus! Deleniti voluptate, repellendus inventore aspernatur maxime
-      ratione, unde reiciendis, odit voluptatibus facilis tempore quaerat
-      reprehenderit atque dolorem dolorum soluta recusandae magni. Expedita
-      dolorem quo, velit ex, quia aperiam laboriosam dolorum molestias, harum
-      est ipsum pariatur quidem ipsam! Libero id, itaque quasi ratione commodi
-      cum. Odit quidem praesentium rem perferendis totam saepe exercitationem,
-      modi facere. Excepturi, quaerat mollitia! Et dolor nihil adipisci
-      doloremque, cupiditate eum ipsa. Quos optio commodi distinctio, incidunt
-      ipsam tempore quis iure dicta in quibusdam ea inventore vero ut eaque,
-      iusto autem possimus nobis odio fugit nulla hic reprehenderit! Sequi nobis
-      tenetur iusto repellat impedit reprehenderit ab voluptatum accusamus sed
-      ad quae vero eaque illum repellendus labore dicta eveniet, velit harum
-      quos praesentium animi iure laudantium. Odit tenetur aut repellendus
-      similique perferendis perspiciatis veritatis quaerat quam. In quidem
-      aspernatur dolorum sed id cupiditate sapiente fugiat, impedit, eos non
-      necessitatibus quod, aliquid inventore amet! Enim voluptates vero
-      consectetur magnam, eum possimus officiis quasi ullam adipisci ducimus
-      sed, necessitatibus sequi cum hic saepe repudiandae, tempora expedita
-      corporis pariatur molestiae veritatis assumenda voluptate dolor dolore.
-      Accusantium quia porro consequuntur mollitia obcaecati in! Ratione, natus
-      obcaecati repellat reiciendis, id, beatae nemo reprehenderit officiis eum
-      fugit adipisci sint amet. Exercitationem veniam vel quaerat aspernatur!
-      Praesentium ratione optio quas, ab suscipit quasi dolor laboriosam sit
-      similique, dignissimos deserunt perferendis! Laborum porro magni, quidem
-      nam dolorum consectetur non. Eius tempora laboriosam incidunt, dolor
-      deserunt dolorum neque autem. Nesciunt molestiae consequatur et, iusto
-      quis eveniet cupiditate cum quos fugiat, at recusandae ratione aspernatur
-      repudiandae perspiciatis ullam asperiores voluptates. Laborum doloribus
-      error quisquam consequatur laboriosam id tempora! Odio hic delectus
-      deserunt quod, libero dolorum repellendus.
+     this is admin dashboard
     </div>
   );
 };
