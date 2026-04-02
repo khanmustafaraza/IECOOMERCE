@@ -1,6 +1,6 @@
 import React from "react";
 
-const page = () => {
+const Dashboard = () => {
   return (
     <div>
       page Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque
@@ -50,4 +50,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Dashboard;

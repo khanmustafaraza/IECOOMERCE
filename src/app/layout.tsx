@@ -1,21 +1,13 @@
 import type { Metadata } from "next";
-import { Open_Sans, Roboto, Lato } from "next/font/google";
+import { Lato } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import "./globals.css";
 import AuthProvider from "@/store/AuthContext";
 
-const openSans = Open_Sans({
-  variable: "--font-open-sans",
-  subsets: ["latin"],
-});
-const roboto = Roboto({
-  variable: "--font-roboto",
-  subsets: ["latin"],
-});
 const lato = Lato({
   variable: "--font-lato",
   subsets: ["latin"],
-  weight: ["100", "300", "400", "700", "900"],
+  weight: ["400", "700"], // 🔥 minimal
 });
 
 export const metadata: Metadata = {
@@ -25,9 +17,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" className={`${lato.variable} h-full antialiased`}>
       <AuthProvider>

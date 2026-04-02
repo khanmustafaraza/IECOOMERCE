@@ -34,6 +34,12 @@ export default function Navbar() {
             >
               About
             </Link>
+            <Link
+              href="/user"
+              className="relative text-[15px] font-medium text-gray-700 hover:text-black transition-all duration-300 after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-black after:transition-all after:duration-300 hover:after:w-full"
+            >
+              User
+            </Link>
           </div>
         </div>
 

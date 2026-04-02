@@ -1,93 +1,44 @@
-// import { NextResponse } from "next/server";
-// import { verifyToken } from "./lib/auth";
+import { NextRequest, NextResponse } from "next/server";
+import { decryptToken } from "./lib/session-token-auth";
 
-// export function middleware(req: any) {
-//   const token = req.cookies.get("token")?.value;
+export default function proxy(req: NextRequest) {
+  const path = req.nextUrl.pathname;
 
-//   if (!token) {
-//     return NextResponse.redirect(new URL("/login", req.url));
-//   }
+  const isProtectedRoute =
+    path.startsWith("/user") ||
+    path.startsWith("/admin") ||
+    path.startsWith("/delivery");
 
-//   try {
-//     const decoded: any = verifyToken(token);
+  const isPublicRoute = ["/", "/login", "/register"].includes(path);
 
-//     // Admin route protection
-//     if (req.nextUrl.pathname.startsWith("/admin") && decoded.role !== "admin") {
-//       return NextResponse.redirect(new URL("/", req.url));
-//     }
+  const session = req.cookies.get("session")?.value;
+  const user = session ? decryptToken(session) : null;
 
-//     return NextResponse.next();
-//   } catch (err) {
-//     return NextResponse.redirect(new URL("/login", req.url));
-//   }
-// }
+  console.log("middleware hit:", path, user);
 
-// export const config = {
-//   matcher: ["/dashboard/:path*", "/admin/:path*"],
-// };
+  // 1️⃣ Not logged in → redirect to login
+  if (isProtectedRoute && !user) {
+    return NextResponse.redirect(new URL("/login", req.nextUrl));
+  }
 
-const middleware = (req: any) => {};
+  // 2️⃣ Already logged in on public page → redirect to their dashboard
+  if (isPublicRoute && user) {
+    if (user.role === "admin") return NextResponse.redirect(new URL("/admin", req.nextUrl));
+    if (user.role === "delivery") return NextResponse.redirect(new URL("/delivery", req.nextUrl));
+    return NextResponse.redirect(new URL("/user", req.nextUrl));
+  }
 
-export default middleware;
+  // 3️⃣ Role-based protection
+  if (path.startsWith("/admin") && user?.role !== "admin") {
+    return NextResponse.redirect(new URL("/user", req.nextUrl));
+  }
+  if (path.startsWith("/delivery") && user?.role !== "delivery") {
+    return NextResponse.redirect(new URL("/user", req.nextUrl));
+  }
+  if (path.startsWith("/user") && user?.role !== "user") {
+    return NextResponse.redirect(new URL("/", req.nextUrl));
+  }
 
-// import { NextRequest, NextResponse } from "next/server";
-// import { jwtVerify } from "jose";
-
-// const secretKey = process.env.SESSION_SECRET!;
-// const encodedKey = new TextEncoder().encode(secretKey);
-
-// async function decrypt(session: string | undefined = "") {
-//   try {
-//     const { payload } = await jwtVerify(session, encodedKey, {
-//       algorithms: ["HS256"],
-//     });
-
-//     return payload as {
-//       userId: string;
-//       role: "user" | "admin";
-//     };
-//   } catch {
-//     return null;
-//   }
-// }
-
-// const protectedRoutes = ["/dashboard", "/admin"];
-// const publicRoutes = ["/login", "/register", "/"];
-
-// export default async function proxy(req: NextRequest) {
-//   const path = req.nextUrl.pathname;
-
-//   const isProtectedRoute = protectedRoutes.some((route) =>
-//     path.startsWith(route),
-//   );
-
-//   const isPublicRoute = publicRoutes.includes(path);
-
-//   const cookie = req.cookies.get("session")?.value;
-//   const session = await decrypt(cookie);
-
-//   // Not logged in -> block protected routes
-//   if (isProtectedRoute && !session?.userId) {
-//     return NextResponse.redirect(new URL("/login", req.nextUrl));
-//   }
-
-//   // Logged in user trying to open login/register again
-//   if (isPublicRoute && session?.userId) {
-//     if (session.role === "admin") {
-//       return NextResponse.redirect(new URL("/admin", req.nextUrl));
-//     }
-
-//     return NextResponse.redirect(new URL("/dashboard", req.nextUrl));
-//   }
-
-//   // Logged in but non-admin trying to open /admin
-//   if (path.startsWith("/admin") && session?.role !== "admin") {
-//     return NextResponse.redirect(new URL("/dashboard", req.nextUrl));
-//   }
-
-//   return NextResponse.next();
-// }
-
-// export const config = {
-//   matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
-// };
+  // ✅ All good → continue
+  return NextResponse.next();
+}

@@ -16,4 +16,4 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
 };
 
 export default AdminLayout;
-import { FiTrendingUp, FiPackage, FiUsers, FiDollarSign } from "react-icons/fi";
+// import { FiTrendingUp, FiPackage, FiUsers, FiDollarSign } from "react-icons/fi";
