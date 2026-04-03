@@ -3,6 +3,7 @@ import { Lato } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import "./globals.css";
 import AuthProvider from "@/store/AuthContext";
+import AdminAppProvider from "@/store/AdminContext";
 
 const lato = Lato({
   variable: "--font-lato",
@@ -22,12 +23,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${lato.variable} h-full antialiased`}>
-      <AuthProvider>
-        <body className="min-h-full flex flex-col">
-          <ToastContainer />
-          {children}
-        </body>
-      </AuthProvider>
+      <body className="min-h-full flex flex-col">
+        <AuthProvider>
+          <AdminAppProvider>
+            <ToastContainer />
+            {children}
+          </AdminAppProvider>
+        </AuthProvider>
+      </body>
     </html>
   );
 }

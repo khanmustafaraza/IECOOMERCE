@@ -19,6 +19,12 @@ const Sidebar = () => {
       icon: <FiGrid size={18} />,
     },
     {
+      id: 8,
+      name: "Add Category",
+      href: "/admin/addcategory",
+      icon: <FiGrid size={18} />,
+    },
+    {
       id: 2,
       name: "Users",
       href: "/admin/users",
@@ -40,6 +46,18 @@ const Sidebar = () => {
       id: 5,
       name: "Settings",
       href: "/admin/settings",
+      icon: <FiSettings size={18} />,
+    },
+    {
+      id: 50,
+      name: "Category list",
+      href: "/admin/categorylist",
+      icon: <FiSettings size={18} />,
+    },
+    {
+      id: 51,
+      name: "Add Product",
+      href: "/admin/addproduct",
       icon: <FiSettings size={18} />,
     },
   ];

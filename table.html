@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time Table Class 9 (B)</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      body {
+        background: white;
+        padding: 20px;
+        color: #000;
+      }
+
+      .wrapper {
+        width: 100%;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .title {
+        text-align: center;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 18px;
+        text-transform: uppercase;
+      }
+
+      table {
+        width: 100%;
+        /* border-collapse: collapse; */
+        table-layout: fixed;
+        border: 2px solid #000;
+      }
+
+      th,
+      td {
+        border: 1px solid #000;
+        text-align: center;
+        vertical-align: middle;
+        padding: 10px 6px;
+        word-wrap: break-word;
+      }
+
+      th {
+        font-size: 16px;
+        font-weight: bold;
+        background: #f2f2f2;
+      }
+
+      .day {
+        font-weight: bold;
+        font-size: 16px;
+        width: 110px;
+        background: #fafafa;
+      }
+
+      .subject {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+
+      .teacher {
+        font-size: 14px;
+        line-height: 1.4;
+      }
+
+      .recess {
+        font-weight: bold;
+        font-size: 20px;
+        letter-spacing: 2px;
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        background: #f7f7f7;
+        width: 70px;
+      }
+
+      /* Print settings */
+      @page {
+        size: A4 landscape;
+        margin: 10mm;
+      }
+
+      @media print {
+        body {
+          padding: 0;
+          margin: 0;
+        }
+
+        .wrapper {
+          max-width: 100%;
+        }
+
+        .title {
+          font-size: 24px;
+          margin-bottom: 12px;
+        }
+
+        th,
+        td {
+          padding: 8px 5px;
+        }
+
+        .subject {
+          font-size: 15px;
+        }
+
+        .teacher {
+          font-size: 13px;
+        }
+
+        .day {
+          font-size: 15px;
+        }
+
+        .recess {
+          font-size: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="title">Time Table Class 9 (B)</div>
+
+      <table>
+        <tr>
+          <th></th>
+          <th>Period 1</th>
+          <th>Period 2</th>
+          <th>Period 3</th>
+          <th>RECESS</th>
+          <th>Period 4</th>
+          <th>Period 5</th>
+          <th>Period 6</th>
+          <th>Period 7</th>
+        </tr>
+
+        <tr>
+          <td class="day">Monday</td>
+          <td>
+            <div class="subject">Biology</div>
+            <div class="teacher">Mr Ankit</div>
+          </td>
+          <td>
+            <div class="subject">S.St.</div>
+            <div class="teacher">Mrs Safia</div>
+          </td>
+          <td>
+            <div class="subject">English</div>
+            <div class="teacher">Mrs Monika</div>
+          </td>
+          <td class="recess" rowspan="6">RECESS</td>
+          <td>
+            <div class="subject">Games</div>
+            <div class="teacher">Mr Ravindra</div>
+          </td>
+          <td>
+            <div class="subject">Maths</div>
+            <div class="teacher">Mr Sahin Parmar</div>
+          </td>
+          <td>
+            <div class="subject">Physics</div>
+            <div class="teacher">Ms Aftab</div>
+          </td>
+          <td>
+            <div class="subject">Hindi</div>
+            <div class="teacher">Mrs Purvi</div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="day">Tuesday</td>
+          <td>
+            <div class="subject">Biology</div>
+            <div class="teacher">Mr Ankit</div>
+          </td>
+          <td>
+            <div class="subject">S.St.</div>
+            <div class="teacher">Mrs Safia</div>
+          </td>
+          <td>
+            <div class="subject">English</div>
+            <div class="teacher">Mrs Monika</div>
+          </td>
+          <td>
+            <div class="subject">Games</div>
+            <div class="teacher">Mr Ravindra</div>
+          </td>
+          <td>
+            <div class="subject">Maths</div>
+            <div class="teacher">Mr Sahin Parmar</div>
+          </td>
+          <td>
+            <div class="subject">Physics</div>
+            <div class="teacher">Ms Aftab</div>
+          </td>
+          <td>
+            <div class="subject">Hindi</div>
+            <div class="teacher">Mrs Purvi</div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="day">Wednesday</td>
+          <td>
+            <div class="subject">Biology</div>
+            <div class="teacher">Mr Ankit</div>
+          </td>
+          <td>
+            <div class="subject">S.St.</div>
+            <div class="teacher">Mrs Safia</div>
+          </td>
+          <td>
+            <div class="subject">English</div>
+            <div class="teacher">Mrs Monika</div>
+          </td>
+          <td>
+            <div class="subject">Games</div>
+            <div class="teacher">Mr Ravindra</div>
+          </td>
+          <td>
+            <div class="subject">Maths</div>
+            <div class="teacher">Mr Sahin Parmar</div>
+          </td>
+          <td>
+            <div class="subject">Physics</div>
+            <div class="teacher">Ms Aftab</div>
+          </td>
+          <td>
+            <div class="subject">Hindi</div>
+            <div class="teacher">Mrs Purvi</div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="day">Thursday</td>
+          <td>
+            <div class="subject">Chemistry</div>
+            <div class="teacher">Mr Ankit</div>
+          </td>
+          <td>
+            <div class="subject">S.St.</div>
+            <div class="teacher">Mrs Safia</div>
+          </td>
+          <td>
+            <div class="subject">English</div>
+            <div class="teacher">Mrs Monika</div>
+          </td>
+          <td>
+            <div class="subject">Games</div>
+            <div class="teacher">Mr Ravindra</div>
+          </td>
+          <td>
+            <div class="subject">Maths</div>
+            <div class="teacher">Mr Sahin Parmar</div>
+          </td>
+          <td>
+            <div class="subject">I.T.</div>
+            <div class="teacher">Mr Mustafa</div>
+          </td>
+          <td>
+            <div class="subject">Hindi</div>
+            <div class="teacher">Mrs Purvi</div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="day">Friday</td>
+          <td>
+            <div class="subject">Chemistry</div>
+            <div class="teacher">Mr Ankit</div>
+          </td>
+          <td>
+            <div class="subject">S.St.</div>
+            <div class="teacher">Mrs Safia</div>
+          </td>
+          <td>
+            <div class="subject">English</div>
+            <div class="teacher">Mrs Monika</div>
+          </td>
+          <td>
+            <div class="subject">Games</div>
+            <div class="teacher">Mr Ravindra</div>
+          </td>
+          <td>
+            <div class="subject">Maths</div>
+            <div class="teacher">Mr Sahin Parmar</div>
+          </td>
+          <td>
+            <div class="subject">I.T.</div>
+            <div class="teacher">Mr Mustafa</div>
+          </td>
+          <td>
+            <div class="subject">Hindi</div>
+            <div class="teacher">Mrs Purvi</div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="day">Saturday</td>
+          <td>
+            <div class="subject">Chemistry</div>
+            <div class="teacher">Mr Ankit</div>
+          </td>
+          <td>
+            <div class="subject">S.St.</div>
+            <div class="teacher">Mrs Safia</div>
+          </td>
+          <td>
+            <div class="subject">English</div>
+            <div class="teacher">Mrs Monika</div>
+          </td>
+          <td>
+            <div class="subject">Games</div>
+            <div class="teacher">Mr Ravindra</div>
+          </td>
+          <td>
+            <div class="subject">Maths</div>
+            <div class="teacher">Mr Sahin Parmar</div>
+          </td>
+          <td>
+            <div class="subject">I.T.</div>
+            <div class="teacher">Mr Mustafa</div>
+          </td>
+          <td>
+            <div class="subject">Hindi</div>
+            <div class="teacher">Mrs Purvi</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

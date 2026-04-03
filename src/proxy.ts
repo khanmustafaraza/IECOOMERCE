@@ -9,7 +9,7 @@ export default function proxy(req: NextRequest) {
     path.startsWith("/admin") ||
     path.startsWith("/delivery");
 
-  const isPublicRoute = ["/", "/login", "/register"].includes(path);
+  const isPublicRoute = ["/login", "/register"].includes(path);
 
   const session = req.cookies.get("session")?.value;
   const user = session ? decryptToken(session) : null;
@@ -23,8 +23,10 @@ export default function proxy(req: NextRequest) {
 
   // 2️⃣ Already logged in on public page → redirect to their dashboard
   if (isPublicRoute && user) {
-    if (user.role === "admin") return NextResponse.redirect(new URL("/admin", req.nextUrl));
-    if (user.role === "delivery") return NextResponse.redirect(new URL("/delivery", req.nextUrl));
+    if (user.role === "admin")
+      return NextResponse.redirect(new URL("/admin", req.nextUrl));
+    if (user.role === "delivery")
+      return NextResponse.redirect(new URL("/delivery", req.nextUrl));
     return NextResponse.redirect(new URL("/user", req.nextUrl));
   }
 
