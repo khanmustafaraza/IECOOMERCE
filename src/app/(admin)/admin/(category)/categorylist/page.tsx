@@ -6,32 +6,7 @@ import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
 
 const Categorylist = () => {
   const { state } = useAdmin();
-  const categories = [
-    {
-      id: 1,
-      category: "Electronics",
-      subCategory: "Mobile Phones",
-      createdAt: "03 Apr 2026",
-    },
-    {
-      id: 2,
-      category: "Fashion",
-      subCategory: "Men Clothing",
-      createdAt: "02 Apr 2026",
-    },
-    {
-      id: 3,
-      category: "Home & Living",
-      subCategory: "Furniture",
-      createdAt: "01 Apr 2026",
-    },
-    {
-      id: 4,
-      category: "Beauty",
-      subCategory: "Skin Care",
-      createdAt: "31 Mar 2026",
-    },
-  ];
+ 
 
   return (
     <section className="p-4 md:p-6 bg-slate-50 min-h-screen">

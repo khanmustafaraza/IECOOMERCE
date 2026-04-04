@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Lato } from "next/font/google";
+import { Roboto ,AR_One_Sans} from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import "./globals.css";
 import AuthProvider from "@/store/AuthContext";
 import AdminAppProvider from "@/store/AdminContext";
 
-const lato = Lato({
-  variable: "--font-lato",
+const arOneSans = AR_One_Sans({
+  variable: "--font-ar-one-sans",
   subsets: ["latin"],
-  weight: ["400", "700"], // 🔥 minimal
+  
 });
 
 export const metadata: Metadata = {
@@ -22,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${lato.variable} h-full antialiased`}>
+    <html lang="en" className={`${arOneSans.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <AuthProvider>
           <AdminAppProvider>
